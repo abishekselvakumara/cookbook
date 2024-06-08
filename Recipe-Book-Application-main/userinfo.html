@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Info</title>
+</head>
+
+<body>
+    <div id="userInfoContainer"></div>
+    <script>
+        const userInfoContainer = document.getElementById('userInfoContainer');
+
+        // Get all keys from local storage
+        const keys = Object.keys(localStorage);
+
+        // Iterate over each key and retrieve the corresponding data
+        keys.forEach(key => {
+            const userData = JSON.parse(localStorage.getItem(key));
+
+            // Display user info on the webpage
+            const userInfoDiv = document.createElement('div');
+            if (userData) {
+                userInfoDiv.innerHTML = `
+                    <h2>User Info</h2>
+                    <p>Name: ${userData.username}</p>
+                    <p>Email: ${userData.email}</p>
+                    <p>Mobile: ${userData.mobile}</p>
+                    <p>Password: ${userData.password}</p>
+                `;
+            } else {
+                userInfoDiv.innerHTML = '<p>No user data found</p>';
+            }
+
+            userInfoContainer.appendChild(userInfoDiv);
+        });
+    </script>
+</body>
+
+</html>
